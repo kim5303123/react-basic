@@ -1,6 +1,7 @@
+import PropTypes from "prop-types";
 import { useState } from "react"; //  useState Hook 사용
-function Header(props) {
-  console.log("props", props.title);
+function Header({ title, onChangeMode }) {
+  // console.log("props", title);
   return (
     <header>
       <h1>
@@ -8,15 +9,19 @@ function Header(props) {
           href="/"
           onClick={(event) => {
             event.preventDefault();
-            props.onChangeMode();
+            onChangeMode();
           }}
         >
-          {props.title}
+          {title}
         </a>
       </h1>
     </header>
   );
 }
+Header.propTypes = {
+  title: PropTypes.string,
+  onChangeMode: PropTypes.func,
+};
 
 function Nav(props) {
   const lis = [];
@@ -43,6 +48,10 @@ function Nav(props) {
     </nav>
   );
 }
+Nav.propTypes = {
+  topics: PropTypes.array,
+  onChangeMode: PropTypes.func,
+};
 
 function Article(props) {
   return (
@@ -52,6 +61,10 @@ function Article(props) {
     </article>
   );
 }
+Article.propTypes = {
+  title: PropTypes.string,
+  body: PropTypes.string,
+};
 
 function App() {
   //   const mode = "WELCOME";
